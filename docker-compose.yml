@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8096:8086"
+    volumes:
+      - ./influx/var/lib/influxdb:/var/lib/influxdb/
+    env_file:
+      - ./secrets.env
+
+  grafana:
+    user: 1000:1000
+    image: grafana/grafana-oss:latest
+    ports:
+      - "8097:3000"
+    volumes:
+      - ./dashboards:/etc/dashboards/
+      - ./grafana/etc/grafana:/etc/grafana/
+      - ./grafana/var/lib/grafana:/var/lib/grafana
+    env_file:
+    - ./secrets.env
