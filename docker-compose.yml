@@ -6,7 +6,7 @@ services:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - INFLUXDB_DB=asshole
       - INFLUXDB_ADMIN_ENABLED="true"
-      - INFLUXDB_HTTP_AUTH_ENABLED="true"
+      - INFLUXDB_HTTP_AUTH_ENABLED=true
     ports:
       - "8096:8086"
     volumes:
