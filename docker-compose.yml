@@ -8,6 +8,8 @@ services:
       - ./influx/var/lib/influxdb:/var/lib/influxdb/
     env_file:
       - ./secrets.env
+    networks:
+      - influx
 
   grafana:
     user: 1000:1000
@@ -19,4 +21,10 @@ services:
       - ./grafana/etc/grafana:/etc/grafana/
       - ./grafana/var/lib/grafana:/var/lib/grafana
     env_file:
-    - ./secrets.env
+      - ./secrets.env
+    networks:
+      - influx
+
+networks:
+  influx:
+    name: influx
